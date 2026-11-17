@@ -194,6 +194,25 @@ function check(observed, expected) {
 }
 
 const failures = [];
+
+// The manifest is what makes this package a bundle and a client plugin. A
+// rewrite that drops `dsh` breaks both at once, and the Host only says
+// "declares no dsh.bundle" at boot.
+const manifest = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+const manifestProblems = [];
+if (manifest.dsh?.bundle?.patch === undefined) {
+  manifestProblems.push('dsh.bundle.patch ausente');
+} else if (!fs.existsSync(new URL(`../${manifest.dsh.bundle.patch}`, import.meta.url))) {
+  manifestProblems.push(`dsh.bundle.patch aponta para ausente: ${manifest.dsh.bundle.patch}`);
+}
+if (manifest.dsh?.client?.platform !== 'web') manifestProblems.push('dsh.client.platform nao e web');
+if (manifest.exports?.['./client'] === undefined) manifestProblems.push('exports ./client ausente');
+for (const entry of manifest.files ?? []) {
+  if (entry.includes('*')) continue;
+  if (!fs.existsSync(new URL(`../${entry}`, import.meta.url))) manifestProblems.push(`files aponta para ausente: ${entry}`);
+}
+if (manifestProblems.length > 0) failures.push({ name: 'manifesto', problems: manifestProblems });
+
 const fake = await startFake();
 const logDir = fs.mkdtempSync(path.join(process.env.TMPDIR ?? '/tmp', 'systemone-selftest-'));
 process.env[KEY] = process.env[KEY] ?? 'selftest-key';
