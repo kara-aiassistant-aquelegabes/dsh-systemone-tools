@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "System One gates",
+    "description": "Decision gates over the typesafe/jev model: a conclusion checker, a shell risk gate and an external-content injection filter that run inside the loop, plus three tools the model can call on demand."
+  }
+}

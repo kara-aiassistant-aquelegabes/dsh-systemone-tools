@@ -1,0 +1,13 @@
+# Installed by the Harness, not by git.
+node_modules/
+
+# Local audit output.
+logs/
+relatorios/
+systemone-logs/
+*.log
+
+# Editor and OS noise.
+.DS_Store
+.idea/
+.vscode/

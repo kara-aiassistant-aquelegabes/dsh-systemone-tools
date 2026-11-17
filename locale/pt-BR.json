@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Portoes System One",
+    "description": "Portoes de decisao sobre o modelo typesafe/jev: checador de conclusao, porteiro de risco do shell e filtro de injecao em conteudo externo rodando dentro do loop, mais tres ferramentas que o modelo chama sob demanda."
+  }
+}

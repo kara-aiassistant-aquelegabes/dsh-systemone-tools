@@ -1,0 +1,69 @@
+{
+  "name": "@kara/dsh-systemone-tools",
+  "version": "1.0.0",
+  "description": "Decision gates for the DSH agent loop: a conclusion checker, a shell risk gate, an external-content injection filter, three model-callable tools, and a thresholds form on the Plugins page. Works with any decision endpoint or OpenAI-compatible API.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/ask.js",
+    "lib/exposed.js",
+    "lib/guard.js",
+    "lib/live.js",
+    "lib/log.js",
+    "lib/plain.js",
+    "lib/policy.js",
+    "lib/state.js",
+    "lib/adapters/systemone.js",
+    "lib/adapters/openai.js",
+    "lib/tools/bash-risk.js",
+    "lib/tools/conclusion.js",
+    "lib/tools/injection.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/selftest.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "agent",
+    "gates",
+    "guardrails",
+    "decision-model",
+    "prompt-injection"
+  ],
+  "license": "MIT",
+  "author": "Kara AI <aiassistantkara@gmail.com>",
+  "contributors": [
+    "Gabriel Santos <gabe.santos1@outlook.com> (https://github.com/aquelegabes)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kara-aiassistant-aquelegabes/dsh-systemone-tools.git"
+  },
+  "homepage": "https://github.com/kara-aiassistant-aquelegabes/dsh-systemone-tools#readme",
+  "bugs": {
+    "url": "https://github.com/kara-aiassistant-aquelegabes/dsh-systemone-tools/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/schemastery": "*"
+  }
+}

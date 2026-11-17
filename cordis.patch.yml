@@ -1,0 +1,51 @@
+# The row this bundle installs.
+#
+# A new entry needs `insert`: without it the loader answers
+# `patch: entry "systemone-tools" not found` and ignores the block.
+#
+# Every value here is a default. A deployment overrides any of it by id in its
+# own profile patch, and the thresholds form on the Plugins page writes exactly
+# that override.
+- insert:
+    - id: systemone-tools
+      name: '@kara/dsh-systemone-tools'
+      config:
+        provider: systemone
+        model: typesafe/jev
+        timeoutMs: 8000
+        failOpen: true
+        privacy:
+          guard: true
+          action: skip
+          markers: []
+        log:
+          enabled: true
+          dir: ''
+        conclusion:
+          enabled: true
+          blockBelow: 0.5
+          maxRounds: 2
+          stateChars: 6000
+          includeTools:
+            - bash
+            - write
+            - edit
+            - str_replace_editor
+            - present
+          onLowConfidence: log
+        bashRisk:
+          enabled: true
+          blockAtRisk: 2
+          scopeBelow: 0.75
+          onLowConfidence: ask
+        injection:
+          enabled: true
+          tools:
+            - web_fetch
+          blockAbove: 0.6
+          noteAbove: 0.4
+          maxBlocks: 20
+          budgetMs: 20000
+          blockChars: 2000
+        tools:
+          enabled: true
